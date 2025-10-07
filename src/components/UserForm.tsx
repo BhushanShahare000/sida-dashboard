@@ -9,19 +9,14 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-
-interface User {
-  id?: string;
-  name: string;
-  email: string;
-}
+import { User } from "@/types/user";
 
 interface UserFormProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onSubmit: (user: Omit<User, "id">) => void; // add new user
-  editingUser?: User | null; // null when adding
-  updateUser?: (user: User) => void; // update existing user
+  onSubmit: (user: Omit<User, "id">) => void;
+  editingUser?: User | null;
+  updateUser?: (user: User) => void;
 }
 
 export default function UserForm({
@@ -34,7 +29,6 @@ export default function UserForm({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
-  // 🧠 If editing, pre-fill form fields
   useEffect(() => {
     if (editingUser) {
       setName(editingUser.name);
@@ -43,7 +37,6 @@ export default function UserForm({
     }
   }, [editingUser, setOpen]);
 
-  // 🧠 Submit handler
   const handleSubmit = () => {
     if (editingUser && updateUser) {
       updateUser({ ...editingUser, name, email });

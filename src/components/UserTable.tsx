@@ -1,18 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import React from "react";
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
+import { User } from "@/types/user";
 
 interface UserTableProps {
   users: User[];
   onEdit: (user: User) => void;
-  onDelete: (id: string) => void;
+  onDelete: (id: number) => void;
 }
 
 export default function UserTable({ users, onEdit, onDelete }: UserTableProps) {
