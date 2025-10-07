@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import UserTable from "@/components/UserTable";
 import UserForm from "@/components/UserForm";
-import { User } from "@/types"; // import shared type
-
+import { User } from "@/types/user";
 export default function DashboardPage() {
   const [users, setUsers] = useState<User[]>([]);
   const [editingUser, setEditingUser] = useState<User | null>(null);
@@ -22,7 +21,6 @@ export default function DashboardPage() {
     localStorage.setItem("users", JSON.stringify(users));
   }, [users]);
 
-  // Add new user
   const addUser = (user: Omit<User, "id">) => {
     setUsers([...users, { id: Date.now(), ...user }]);
     setOpen(false);
