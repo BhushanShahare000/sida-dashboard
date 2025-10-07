@@ -1,15 +1,29 @@
 "use client";
-import { Button } from "@/components/ui/button";
 
-export default function UserTable({ users, onEdit, onDelete }: any) {
+import { Button } from "@/components/ui/button";
+import React from "react";
+
+interface User {
+  id: string;
+  name: string;
+  email: string;
+}
+
+interface UserTableProps {
+  users: User[];
+  onEdit: (user: User) => void;
+  onDelete: (id: string) => void;
+}
+
+export default function UserTable({ users, onEdit, onDelete }: UserTableProps) {
   return (
     <div className="mt-6">
       <table className="w-full border-collapse border border-gray-200">
         <thead className="bg-gray-100">
           <tr>
-            <th className="border p-2">Name</th>
-            <th className="border p-2">Email</th>
-            <th className="border p-2">Actions</th>
+            <th className="border p-2 text-left">Name</th>
+            <th className="border p-2 text-left">Email</th>
+            <th className="border p-2 text-left">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -20,7 +34,7 @@ export default function UserTable({ users, onEdit, onDelete }: any) {
               </td>
             </tr>
           ) : (
-            users.map((user: any) => (
+            users.map((user) => (
               <tr key={user.id} className="border">
                 <td className="p-2">{user.name}</td>
                 <td className="p-2">{user.email}</td>
